@@ -287,12 +287,13 @@
         };
 
         // ==========================================
-        // 2. 背景流体粒子特效
+        // 2. 背景流体粒子特效（桌面）/ 静态渐变（移动端）
         // ==========================================
         const canvas = document.getElementById('gradient-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
         let blobs = [];
+        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
         function getRandomColor() {
             const hue = Math.floor(Math.random() * 360);
@@ -328,14 +329,41 @@
             }
         }
 
+        function drawStaticGradient() {
+            // 移动端：绘制静态渐变背景，避免动画性能问题
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, width, height);
+            
+            // 静态渐变色块
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.15)');
+            gradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.1)');
+            gradient.addColorStop(1, 'rgba(236, 72, 153, 0.1)');
+            
+            ctx.globalCompositeOperation = 'screen';
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+        }
+
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-            blobs = [];
-            for (let i = 0; i < 5; i++) blobs.push(new Blob());
+            
+            if (!isMobile) {
+                blobs = [];
+                for (let i = 0; i < 5; i++) blobs.push(new Blob());
+            } else {
+                drawStaticGradient();
+            }
         }
 
         function animate() {
+            if (isMobile) {
+                // 移动端：一次性绘制，不需要动画循环
+                return;
+            }
+            
+            // 桌面端：动态粒子效果
             ctx.clearRect(0, 0, width, height);
             ctx.globalCompositeOperation = 'source-over';
             ctx.fillStyle = '#0f172a';
