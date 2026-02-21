@@ -165,12 +165,14 @@
                 <img src="./Assets/hexin.jpg" onerror="this.src='default.png'" alt="Michael Hertz" class="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover relative z-10 border border-white/30 shadow-2xl">
             </div>
             
-            <div class="text-center md:text-left z-10 flex-1">
+            <div class="text-left md:text-left z-10 flex-1">
                 <h1 class="text-4xl md:text-5xl font-black text-white mb-2 tracking-tight drop-shadow-lg">HE Xin (Michael Hertz)</h1>
                 <p class="text-white/70 font-medium tracking-widest text-sm uppercase mb-4">Director / Product Manager / Developer</p>
-                <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
+                <p class="text-gray-300 text-sm md:text-base leading-loose mb-1.5">
                     During university, I frequently served as a team leader, taking full responsibility for product requirement research, functional design, and iterative development, while driving user experience optimization. I also worked as content director and technical director for large-scale campus events and self-directed films, coordinating on-site execution and technical support. In addition, I actively participated as a volunteer and student representative in various school activities, developing strong organizational, coordination, and problem-solving skills.
-                    <br>Guided by the belief “Dream it, Do it, Achieve it!”, I embrace challenges with enthusiasm, combining creativity with engineering practice to promote innovative product design and research implementation. My focus lies in Computer Vision and Data Mining as well as delivering efficient, intuitive, and user-centered experiences while continuously exploring new technological frontiers.
+                </p>
+                <p class="text-gray-300 text-sm md:text-base leading-loose mb-6">
+                    Guided by the belief “Dream it, Do it, Achieve it!”, I embrace challenges with enthusiasm, combining creativity with engineering practice to promote innovative product design and research implementation. My focus lies in Computer Vision and Data Mining as well as delivering efficient, intuitive, and user-centered experiences while continuously exploring new technological frontiers.
                 </p>
                 
                 <div class="flex justify-center md:justify-start space-x-4">
@@ -238,6 +240,21 @@
         const portfolioData = {
             projects: [
                 {
+                    name: "SwapSpot Second-hand Trading Platform",
+                    link: "",
+                    description: "Led full-stack development, utilizing BASE64 encoding for image storage to bypass server restrictions."
+                }, 
+                {
+                    name: "TinyNeRF-based 2D-to-3D Reconstruction",
+                    link: "",
+                    description: "HKU Summer Program project (Second Prize). Led the development of a model converting 2D images into 3D models."
+                },
+                {
+                    name: "Restaurant Management System", 
+                    link: "https://github.com/hezsystemscorporation/rms_new", 
+                    description: "Led full-stack development of a Restaurant Management System; implemented real-time ID transmission for dynamic menu interactions and a robust cart engine. Engineered an ID-driven tracking architecture to ensure order accuracy, while optimizing UX through modular search, filtering, and pagination. "
+                }, 
+                {
                     name: "Pokémon Tools",
                     link: "https://github.com/hezsystemscorporation/pokemon-tools",
                     description: "Sequence prediction model based on Transformers. Included web scraping, data cleaning, and UI assets design."
@@ -248,32 +265,82 @@
                     description: "C++ based command-line chatting system with XOR encrypted communication and multi-window support (up to 10 chats)."
                 },
                 {
+                    name: "Olympic Medal Prediction (2025 MCM/ICM Project)",
+                    link: "",
+                    description: "Participated in the MCM/ICM contest, responsible for proposing the prediction strategy, evaluating feasibility, and designing ML models to analyze and predict Olympic medal distributions based on historical data in team. "
+                }, 
+                {
                     name: "Android Signal Detection & Campus Navigation",
                     link: "",
                     description: "Architected a multi-level campus navigation system. Designed a three-tier map interaction scheme ('Panorama 3D Stacked Floor Plan') and completed the signal detection module."
                 },
                 {
-                    name: "TinyNeRF-based 2D-to-3D Reconstruction",
-                    link: "",
-                    description: "HKU Summer Program project (Second Prize). Led the development of a model converting 2D images into 3D models."
-                },
-                {
                     name: "Embodied AI PushT Task Simulation",
                     link: "",
                     description: "Reconstructed the PushT task using a DQN learning strategy. Optimized the caching mechanism and focused on improving user interaction methods."
-                },
+                }, 
                 {
-                    name: "SwapSpot Second-hand Trading Platform",
+                    name: "Calculation of the Optimal NIPT Timing for Pregnant Women (2025 CNMCM Project)",
                     link: "",
-                    description: "Led full-stack development, utilizing BASE64 encoding for image storage to bypass server restrictions."
+                    description: "As the team leader, after performing data cleaning and data aggregation tasks, and when multiple basic models failed to yield high-quality results, I developed a strategy for implementing a multi-parameter model. I incorporated various parameters into the calculation, performed grouping and revised grouping based on the pregnant women's comprehensive gestational weeks, and ultimately determined the optimal gestational week range and the best NIPT timing for each group. "
+                }, 
+                {
+                    name: "Image Search Based on Texts and Graphs Indices",
+                    link: "",
+                    description: "Architected a CLIP-based Dual-Encoder using a custom CNN and masked text encoder, leveraging FAISS indexing and a hybrid data strategy to achieve robust semantic retrieval in few-shot scenarios. "
+                }, 
+                {
+                    name: "Benchmarking LLM Performance on Academic Tasks", 
+                    link:"", 
+                    description: "Led comparative benchmarking of ChatGPT, DeepSeek, and Doubao, engineering robustness protocols with LaTeX inputs and noise injection to evaluate complex reasoning and multimodal disparities. "
+                }, 
+                {
+                    name: "Comparative Implementation of Multi-Architecture Sentiment Analysis Models", 
+                    link: "", 
+                    description: "Executed cross-domain transfer learning experiments by adapting models from IMDB datasets to unstructured social media data, analyzing linguistic adaptability across diverse contexts. "
+                }, 
+                {
+                    name: "Android Signal Detection & Multi-Level Campus Navigation System", 
+                    link: "", 
+                    description: "Architected a three-tier indoor positioning system as Team Lead, implementing core signal detection modules and a multi-scale interaction scheme featuring panoramic, 3D-stacked, and floor-plan views. Defined a production-focused development strategy centered on automated map construction and lightweight mobile inference to maximize the system's real-world scalability and practical applicability. "
+                }, 
+                {
+                    name: "Math Language Compiler", 
+                    link: "", 
+                    description: "Developed a custom math language compiler supporting variables and function calls, elevating black-box evaluation scores from 30% to 86% through rigorous local testing and edge-case analysis. Executed a \"front-loaded\" development strategy to mitigate timeline risks while proactively debugging a peer's critical logic errors, successfully recovering 20% of their project grade."
                 }, 
                 {
                     name: "Cash Counter System",
                     link: "https://hezsystemscorporation.github.io/Projects-Demos/cash_count.html",
                     description: "This webpage is a practical Cash Counter System designed to quickly tally the total value of local currency (coins and notes) alongside foreign exchange. It supports inline mathematical expressions (like 20+5) for seamless counting and fetches live exchange rates to estimate the grand total in CNY. Additionally, users can export the entire manifest with a single click, while all data processing remains securely localized within the browser. "
+                }, 
+                {
+                    name: "Tutorial to Writing with LaTeX",
+                    link: "https://github.com/hezsystemscorporation/Tutorial-to-writing-with-LaTeX",
+                    description: "Developed and published a comprehensive GitHub tutorial on LaTeX-based academic writing, providing a structured onboarding framework for beginners to master document typesetting and essay composition. "
+                }, 
+                {
+                    "name": "Batch-Rename-Tool",
+                    "link": "https://github.com/hezsystemscorporation/Batch-Rename-Tool",
+                    "description": "Developed a high-performance Python utility for automated file management, implementing regex-based renaming and sequence formatting to streamline large-scale dataset organization. "
+                }, 
+                {
+                    "name": "Student_Choice",
+                    "link": "https://github.com/hezsystemscorporation/Student_Choice",
+                    "description": "Developed an automated student selection utility as a foundational middle school project, implementing randomized sampling logic and conditional filtering to solve classroom administrative tasks. "
+                }, 
+                {
+                    "name": "HEZ's OA Platform",
+                    "link": "",
+                    "description": "Designed and developed a comprehensive OA (Office Automation) platform for myself, integrating modules for task management, document collaboration, and internal management to enhance organizational efficiency and streamline workflows. "
                 }
             ],
             films: [
+                {
+                    title: "红岭中学高中部未来工程师团队宣传片 (2022)",
+                    image: "./Assets/ferelease.avif",
+                    link: "https://www.bilibili.com/video/BV1NB4y197nA/?spm_id_from=333.1387.homepage.video_card.click"
+                }, 
                 {
                     title: "滴答 - A Drop of Time (2023)",
                     image: "./Assets/dot.avif",
@@ -285,29 +352,33 @@
                     link: "https://www.bilibili.com/video/BV1aafhYbEuw/?spm_id_from=333.1387.upload.video_card.click"
                 },
                 {
-                    title: "第一次用旗舰机拍Vlog：它给了我多少惊喜？ (2025)",
-                    image: "./Assets/vlogft.avif",
-                    link: "https://www.bilibili.com/video/BV1Z5MQzVEiA/?spm_id_from=333.1387.homepage.video_card.click"
-                }, 
-                {
                     title: "HEZ的2024跨年纪念 (2024)",
                     image: "./Assets/2024.avif",
                     link: "https://www.bilibili.com/video/BV1be411v7Ne/?spm_id_from=333.1387.upload.video_card.click"
+                }, 
+                {
+                    title: "第一次用旗舰机拍Vlog：它给了我多少惊喜？ (2025)",
+                    image: "./Assets/vlogft.avif",
+                    link: "https://www.bilibili.com/video/BV1Z5MQzVEiA/?spm_id_from=333.1387.homepage.video_card.click"
                 }
             ],
             ongoing: [
                 {
                     title: "Healing-themed RPG Game",
-                    description: "Initiated the development plan of a healing-themed RPG game, with beta testing scheduled for 2026. Finding talented collaborators is a current focus. "
+                    description: "Initiated the development plan of a healing-themed RPG game, with beta testing scheduled for 2026. <span class='underline'>Finding talented collaborators is a current focus.</span> "
                 },
                 {
                     title: "HealthWave & Imagine Wave AI Models",
-                    description: "Commercialization and research projects in areas such as mental and physical health care and large AI models, aimed at addressing real-world challenges in high-stress environments. Finding talented collaborators is a current focus. "
+                    description: "Commercialization and research projects in areas such as mental and physical health care and large AI models, aimed at addressing real-world challenges in high-stress environments. <span class='underline'>Finding talented collaborators is a current focus.</span> "
                 }, 
-                    {
-                        title: "Peerplate Platform",
-                        description: "Aiming for fast and efficient peer-to-peer food delivery, Peerplate is a platform connecting food providers and consumers, also providing a navigator for high speed delivery. The project is in the early stages of development, with a focus on building a robust and user-friendly system. Finding talented collaborators is a current focus. This will also include a mini-program version for WeChat, targeting the Chinese market and leveraging the platform's extensive user base for rapid growth and adoption. "
-                    }
+                {
+                    title: "Peerplate Platform",
+                    description: "Aiming for fast and efficient peer-to-peer food delivery, Peerplate is a platform connecting food providers and consumers, also providing a navigator for high speed delivery. The project is in the early stages of development, with a focus on building a robust and user-friendly system. <span class='underline'>Finding talented collaborators is a current focus, we are also finding student deliverymen.</span> This will also include a mini-program version for WeChat, targeting the Chinese market and leveraging the platform's extensive user base for rapid growth and adoption. "
+                }, 
+                {
+                    title: "Math Master",
+                    description: "My unreleased Apple Swift Student Challenge project featured user-friendly interfaces and interactive features, designed to make learning math enjoyable and engaging across multiple grade levels. "
+                }
             ]
         };
 
