@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bund, Shanghai | Attraction Spotlight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f8fafc;
+            color: #1e293b; 
+            overflow-x: hidden; 
+        }
+
+        #gradient-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; 
+            filter: blur(35px) saturate(160%); 
+            opacity: 1; 
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05); 
+            z-index: -1;
+        }
+
+        .glass-module {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.50) 100%);
+            backdrop-filter: blur(24px) saturate(150%);
+            -webkit-backdrop-filter: blur(24px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.04), 
+                0 1px 3px rgba(0, 0, 0, 0.02),
+                inset 0 2px 2px rgba(255, 255, 255, 1), 
+                inset 0 -1px 2px rgba(255, 255, 255, 0.3);
+            border-radius: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-module:hover {
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.06),
+                inset 0 2px 2px rgba(255, 255, 255, 1);
+            transform: translateY(-4px);
+        }
+
+        .img-slider {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1; 
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .img-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 3s ease;
+            transform: scale(1.05);
+        }
+
+        .img-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .dot.active {
+            background: #fff;
+            transform: scale(1.2);
+        }
+
+        .tag-pill {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: #475569;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+        }
+        .tag-pill:hover {
+            background: #fff;
+            color: #f97316; 
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8 relative">
+
+    <canvas id="gradient-canvas"></canvas>
+    <div class="overlay"></div>
+
+    <main class="relative z-10 w-full max-w-5xl">
+        <article class="glass-module p-6 md:p-10 flex flex-col md:flex-row gap-8 lg:gap-12 items-center">
+            
+            <div class="w-full md:w-2/5 flex-shrink-0">
+                <div class="img-slider" id="slider">
+                    <img src="https://img1.qunarzz.com/travel/d5/1512/a7/7a59cf26750fbcf7.jpg_600x600x70_ea195b81.jpg" class="img-slide active" alt="The Bund View 1">
+                    <img src="https://www.thechinajourney.com/wp-content/uploads/2024/12/Reflections-of-historic-Bund-architecture-in-rain-puddles-capturing-the-vibrant-evening-lights-in-Shanghai-2-e1734689918131.webp" class="img-slide" alt="The Bund View 2">
+                    <img src="https://pic.nximg.cn/file/20200617/9594950_103435830086_2.jpg" class="img-slide" alt="The Bund View 3">
+                    
+                    <div class="slider-dots" id="dots-container">
+                        <div class="dot active" onclick="setSlide(0)"></div>
+                        <div class="dot" onclick="setSlide(1)"></div>
+                        <div class="dot" onclick="setSlide(2)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-3/5 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="px-3 py-1 text-xs font-bold tracking-wider text-orange-600 bg-orange-100/50 rounded-full border border-orange-200">SPOTLIGHT</span>
+                    <span class="text-sm font-medium text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i>Shanghai, China</span>
+                </div>
+                
+                <h1 class="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-6 tracking-tight">The Bund</h1>
+
+                <div class="space-y-5 text-slate-700 leading-relaxed text-sm md:text-base mb-8">
+                    <div>
+                        <h3 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-star text-yellow-500 text-sm"></i> Features
+                        </h3>
+                        <p>A striking waterfront promenade stretching along the western bank of the Huangpu River. It offers an unparalleled visual contrast between the historic architectural skyline on one side and the futuristic skyscrapers of Lujiazui on the other.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-blue-500 text-sm"></i> Historical Origins
+                        </h3>
+                        <p>Often referred to as the "Museum of International Architecture," The Bund houses dozens of historical buildings showcasing Romanesque, Gothic, Renaissance, and Art Deco styles, symbolizing Shanghai's golden era in the late 19th and early 20th centuries.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-compass text-emerald-500 text-sm"></i> Recommended To Do
+                        </h3>
+                        <p>Take an evening stroll to witness the spectacular neon light shows reflecting across the river, or book a twilight river cruise for a panoramic, unobstructed view of both sides of the city.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-200/50">
+                    <span class="tag-pill px-4 py-1.5 rounded-full text-xs font-semibold cursor-default">#HistoricLandmark</span>
+                    <span class="tag-pill px-4 py-1.5 rounded-full text-xs font-semibold cursor-default">#Architecture</span>
+                    <span class="tag-pill px-4 py-1.5 rounded-full text-xs font-semibold cursor-default">#NightView</span>
+                    <span class="tag-pill px-4 py-1.5 rounded-full text-xs font-semibold cursor-default">#MustVisit</span>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script>
+        const canvas = document.getElementById('gradient-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let blobs = [];
+        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        const colorPalette = [
+            'rgba(251, 146, 60, 0.95)',  // 橙橘色
+            'rgba(250, 204, 21, 0.95)',  // 明黄色
+            'rgba(255, 113, 113, 0.85)', // 偏红色（增强冷暖对比）
+            'rgba(56, 189, 248, 0.8)',   // 浅蓝色
+            'rgba(244, 114, 182, 0.8)'   // 浅粉色
+        ];
+
+        class Blob {
+            constructor(color) {
+                this.color = color;
+                this.init();
+            }
+            init() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                
+                this.vx = (Math.random() - 0.5) * 4.5;
+                this.vy = (Math.random() - 0.5) * 4.5;
+                
+                this.r = Math.min(width, height) / 1.1; 
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < -this.r) this.vx *= -1;
+                if (this.x > width + this.r) this.vx *= -1;
+                if (this.y < -this.r) this.vy *= -1;
+                if (this.y > height + this.r) this.vy *= -1;
+            }
+            draw() {
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function drawStaticGradient() {
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, width, height);
+            
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, 'rgba(251, 146, 60, 0.5)');
+            gradient.addColorStop(0.5, 'rgba(250, 204, 21, 0.4)');
+            gradient.addColorStop(1, 'rgba(56, 189, 248, 0.5)');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+        }
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            
+            if (!isMobile) {
+                blobs = [];
+                colorPalette.forEach(color => blobs.push(new Blob(color)));
+            } else {
+                drawStaticGradient();
+            }
+        }
+
+        function animate() {
+            if (isMobile) return;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, width, height);
+            ctx.globalCompositeOperation = 'source-over';
+            blobs.forEach(blob => { blob.update(); blob.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+
+        const slides = document.querySelectorAll('.img-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function setSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            currentSlide = index;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+            
+            resetInterval();
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % slides.length;
+            setSlide(nextIndex);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 4000);
+        }
+
+        resetInterval();
+
+    </script>
+</body>
+</html>
